@@ -1,0 +1,1660 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WK 2026 Poule – Hotrodradio</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0d2a54;
+    --navy-light: #1a3d73;
+    --gold: #c9952a;
+    --gold-light: #f0b93a;
+    --white: #ffffff;
+    --off-white: #f7f5f0;
+    --gray: #e8e4dc;
+    --text: #1a1a2e;
+    --green: #2a7a3b;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--off-white);
+    color: var(--text);
+    min-height: 100vh;
+  }
+
+  /* HEADER */
+  header {
+    background: var(--navy);
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  header::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: 
+      radial-gradient(ellipse at 20% 50%, rgba(201,149,42,0.15) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 50%, rgba(201,149,42,0.10) 0%, transparent 60%);
+  }
+
+  .header-inner {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 32px 24px 28px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .logo-wrap {
+    background: white;
+    border-radius: 16px;
+    padding: 14px 24px;
+    display: inline-flex;
+    align-items: center;
+    box-shadow: 0 6px 28px rgba(0,0,0,0.35);
+  }
+
+  .logo-wrap img {
+    height: 110px;
+    width: auto;
+    display: block;
+  }
+
+  .header-title {
+    text-align: center;
+  }
+
+  .header-title h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.8rem, 8vw, 4.5rem);
+    color: var(--white);
+    letter-spacing: 0.06em;
+    line-height: 0.95;
+  }
+
+  .header-title h1 span {
+    color: var(--gold-light);
+  }
+
+  .header-title p {
+    font-family: 'Crimson Pro', serif;
+    font-style: italic;
+    color: rgba(255,255,255,0.75);
+    font-size: 1.1rem;
+    margin-top: 6px;
+    letter-spacing: 0.03em;
+  }
+
+  .gold-bar {
+    height: 4px;
+    background: linear-gradient(90deg, transparent, var(--gold), var(--gold-light), var(--gold), transparent);
+  }
+
+  /* INTRO */
+  .intro {
+    max-width: 800px;
+    margin: 32px auto 0;
+    padding: 0 20px;
+  }
+
+  .intro-card {
+    background: var(--navy);
+    color: white;
+    border-radius: 16px;
+    padding: 24px 28px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .intro-card::after {
+    content: '⚽';
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 5rem;
+    opacity: 0.08;
+  }
+
+  .intro-card h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.4rem;
+    letter-spacing: 0.1em;
+    color: var(--gold-light);
+    margin-bottom: 8px;
+  }
+
+  .intro-card p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: rgba(255,255,255,0.85);
+  }
+
+  /* FORM SECTIONS */
+  .form-wrap {
+    max-width: 800px;
+    margin: 28px auto 0;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .section-card {
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 2px 16px rgba(13,42,84,0.08);
+  }
+
+  .section-header {
+    background: var(--navy);
+    padding: 14px 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .section-header .icon {
+    font-size: 1.4rem;
+  }
+
+  .section-header h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.3rem;
+    letter-spacing: 0.08em;
+    color: var(--white);
+  }
+
+  .section-header .badge {
+    margin-left: auto;
+    background: var(--gold);
+    color: var(--navy);
+    font-weight: 700;
+    font-size: 0.7rem;
+    letter-spacing: 0.05em;
+    padding: 3px 10px;
+    border-radius: 20px;
+  }
+
+  .section-body {
+    padding: 24px;
+  }
+
+  /* DEELNEMER */
+  .field-row {
+    margin-bottom: 18px;
+  }
+
+  label {
+    display: block;
+    font-weight: 500;
+    font-size: 0.85rem;
+    color: var(--navy);
+    letter-spacing: 0.03em;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+  }
+
+  input[type="text"], input[type="email"], input[type="number"], select {
+    width: 100%;
+    padding: 12px 14px;
+    border: 2px solid var(--gray);
+    border-radius: 10px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem;
+    color: var(--text);
+    background: var(--off-white);
+    transition: border-color 0.2s, box-shadow 0.2s;
+    appearance: none;
+    -webkit-appearance: none;
+  }
+
+  input[type="text"]:focus, input[type="email"]:focus, input[type="number"]:focus, select:focus {
+    outline: none;
+    border-color: var(--gold);
+    box-shadow: 0 0 0 3px rgba(201,149,42,0.15);
+    background: white;
+  }
+
+  .select-wrap {
+    position: relative;
+  }
+
+  .select-wrap::after {
+    content: '▾';
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--navy);
+    pointer-events: none;
+    font-size: 1.1rem;
+  }
+
+  /* WEDSTRIJD GRID */
+  .match-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .match-row {
+    background: var(--off-white);
+    border-radius: 12px;
+    padding: 14px 16px;
+    border-left: 4px solid var(--navy);
+  }
+
+  .match-meta {
+    font-size: 0.75rem;
+    color: #666;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  .match-teams {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .team-name {
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--navy);
+  }
+
+  .team-name.right { text-align: right; }
+
+  .team-name.nl {
+    color: var(--gold);
+    font-weight: 700;
+  }
+
+  .score-inputs {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .score-inputs input {
+    width: 48px;
+    text-align: center;
+    padding: 8px 4px;
+    font-size: 1.1rem;
+    font-weight: 700;
+  }
+
+  .score-sep {
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--navy);
+  }
+
+  /* GROEPEN GRID */
+  .groups-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 14px;
+  }
+
+  .group-card {
+    background: var(--off-white);
+    border-radius: 12px;
+    padding: 14px;
+    border-top: 3px solid var(--navy);
+  }
+
+  .group-label {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1rem;
+    letter-spacing: 0.1em;
+    color: var(--navy);
+    margin-bottom: 10px;
+  }
+
+  .group-card label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    color: #555;
+    letter-spacing: 0.03em;
+    margin-bottom: 4px;
+    margin-top: 8px;
+  }
+
+  .group-card label:first-of-type { margin-top: 0; }
+
+  /* KNOCK-OUT */
+  .ko-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .ko-row {
+    background: var(--off-white);
+    border-radius: 12px;
+    padding: 16px;
+    border-left: 4px solid var(--gold);
+  }
+
+  .ko-label {
+    font-family: 'Bebas Neue', sans-serif;
+    letter-spacing: 0.08em;
+    font-size: 0.95rem;
+    color: var(--navy);
+    margin-bottom: 10px;
+  }
+
+  .ko-label span {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 500;
+    color: #777;
+    letter-spacing: 0.02em;
+    display: block;
+    margin-top: 1px;
+  }
+
+  /* SUBMIT */
+  .submit-wrap {
+    padding: 0 20px 40px;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .submit-btn {
+    width: 100%;
+    padding: 18px;
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+    color: white;
+    border: none;
+    border-radius: 14px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.5rem;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.15s, box-shadow 0.15s;
+    box-shadow: 0 4px 20px rgba(13,42,84,0.3);
+    margin-top: 24px;
+  }
+
+  .submit-btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+
+  .submit-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(13,42,84,0.4); }
+  .submit-btn:hover::before { opacity: 1; }
+  .submit-btn span { position: relative; z-index: 1; }
+
+  .submit-note {
+    text-align: center;
+    font-size: 0.82rem;
+    color: #888;
+    margin-top: 10px;
+    font-style: italic;
+  }
+
+  /* SUCCESS */
+  #success-msg {
+    display: none;
+    background: var(--green);
+    color: white;
+    border-radius: 14px;
+    padding: 24px;
+    text-align: center;
+    margin-top: 24px;
+  }
+
+  #success-msg h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.8rem;
+    letter-spacing: 0.08em;
+    margin-bottom: 6px;
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--navy);
+    color: rgba(255,255,255,0.5);
+    text-align: center;
+    padding: 20px;
+    font-size: 0.8rem;
+    margin-top: 20px;
+  }
+
+  footer strong { color: var(--gold); }
+
+  @media (max-width: 480px) {
+    .groups-grid { grid-template-columns: 1fr 1fr; }
+    .section-body { padding: 16px; }
+  }
+
+  /* BACK TO TOP */
+  .back-to-top {
+    display: block;
+    text-align: center;
+    margin: 24px auto 0;
+    padding: 10px 28px;
+    background: var(--navy);
+    color: white;
+    border-radius: 24px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: .88rem;
+    letter-spacing: .04em;
+    width: fit-content;
+    transition: background .2s;
+  }
+  .back-to-top:hover { background: var(--gold); color: var(--navy); }
+</style>
+</head>
+<body id="top">
+
+<div style="width:100%;overflow:hidden;max-height:180px;">
+  
+</div>
+<header id="top">
+  <div class="header-inner">
+    <div class="logo-wrap"><img src="data:image/jpeg;base64,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" alt="Hotrodradio" style="height:80px;width:auto;"></div>
+    <div class="header-title">
+      <h1>WK <span>Poule</span> 2026</h1>
+      <p>🎙️ Doe mee en voorspel de wereldkampioen! 🎙️</p>
+    </div>
+    </div>
+</header>
+<div class="gold-bar"></div>
+
+<div style="max-width:800px;margin:20px auto 0;padding:0 20px;">
+  <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">
+    <a href="wkpoulehrr.html" style="background:var(--gold);color:var(--navy);padding:8px 18px;border-radius:20px;text-decoration:none;font-size:.85rem;font-weight:700;letter-spacing:.03em;">⚽ Poule invullen</a>
+    <a href="scorebord.html" style="background:var(--navy);color:white;padding:8px 18px;border-radius:20px;text-decoration:none;font-size:.85rem;font-weight:600;letter-spacing:.03em;">🏆 Scorebord</a>
+    <a href="uitslagen.html" style="background:var(--navy);color:white;padding:8px 18px;border-radius:20px;text-decoration:none;font-size:.85rem;font-weight:600;letter-spacing:.03em;">📋 Uitslagen</a>
+    <a href="tiplijst.html" style="background:var(--navy);color:white;padding:8px 18px;border-radius:20px;text-decoration:none;font-size:.85rem;font-weight:600;letter-spacing:.03em;">📊 Tiplijst groepsfase</a>
+    <a href="speelschema.html" style="background:var(--navy);color:white;padding:8px 18px;border-radius:20px;text-decoration:none;font-size:.85rem;font-weight:600;letter-spacing:.03em;">📅 Speelschema</a>
+  </div>
+</div>
+
+<div class="intro">
+  <div class="intro-card">
+    <h2>Hoe werkt het?</h2>
+    <p>Vul hieronder jouw voorspellingen in. Je geeft aan wat jij denkt dat de uitslag wordt van de wedstrijden gespeeld door Nederland in de groepsfase, wie er als nummer 1 en 2 per groep eindigt, en wie de kwartfinale, halve finale en finale wint. Na het WK tellen we de punten op en bekijken we wie de beste voorspeller van Hotrodradio is!</p>
+      <div style="margin-top:14px;padding:12px 16px;background:rgba(255,255,255,0.1);border-radius:10px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;">
+        <div>
+          <span style="font-size:0.85rem;color:rgba(255,255,255,0.85)">🏅 Prijzen: <strong style="color:var(--gold-light)">cadeaubon</strong> voor de 1e, 2e én 3e plaats!</span>
+        </div>
+        <a href="#puntentelling" style="background:var(--gold);color:var(--navy);padding:7px 16px;border-radius:20px;font-weight:700;font-size:0.82rem;text-decoration:none;letter-spacing:0.04em;white-space:nowrap;">📊 Bekijk puntentelling ↓</a>
+      </div>
+  </div>
+</div>
+
+<form id="poule-form" class="form-wrap" onsubmit="handleSubmit(event)">
+
+  <!-- DEELNEMER -->
+  <div class="section-card">
+    <div class="section-header">
+      <span class="icon">👤</span>
+      <h2>Jouw gegevens</h2>
+    </div>
+    <div class="section-body">
+      <div class="field-row">
+        <label for="naam">Naam</label>
+        <input type="text" id="naam" name="naam" placeholder="Voornaam en achternaam" required>
+      </div>
+      <div class="field-row">
+        <label for="appartement">Appartementnummer</label>
+        <input type="text" id="appartement" name="appartement" placeholder="bijv. 42" required>
+      </div>
+      <div class="field-row" style="margin-bottom:0">
+        <label for="email">E-mailadres <span style="font-weight:400;color:#888;text-transform:none">(optioneel – voor bevestiging)</span></label>
+        <input type="email" id="email" name="email" placeholder="jouw@email.nl">
+      </div>
+    </div>
+  </div>
+
+  <!-- NEDERLAND WEDSTRIJDEN -->
+  <div class="section-card">
+    <div class="section-header">
+      <span class="icon">🇳🇱</span>
+      <h2>Nederland-wedstrijden</h2>
+      <span class="badge">GROEP F</span>
+    </div>
+    <div class="section-body">
+      <p style="font-size:0.85rem;color:#666;margin-bottom:16px">Voorspel de eindstand (na 90 minuten) van elke Nederland-wedstrijd.</p>
+      <div class="match-grid">
+
+        <div class="match-row">
+          <div class="match-meta">Wedstrijd 31 &nbsp;·&nbsp; 14 juni 2026 &nbsp;·&nbsp; Groep F</div>
+          <div class="match-teams">
+            <span class="team-name nl">🇳🇱 Nederland</span>
+            <div class="score-inputs">
+              <input type="number" min="0" max="20" name="nl1_thuis" placeholder="0" required>
+              <span class="score-sep">–</span>
+              <input type="number" min="0" max="20" name="nl1_uit" placeholder="0" required>
+            </div>
+            <span class="team-name right">Japan 🇯🇵</span>
+          </div>
+        </div>
+
+        <div class="match-row">
+          <div class="match-meta">Wedstrijd 33 &nbsp;·&nbsp; 20 juni 2026 &nbsp;·&nbsp; Groep F</div>
+          <div class="match-teams">
+            <span class="team-name nl">🇳🇱 Nederland</span>
+            <div class="score-inputs">
+              <input type="number" min="0" max="20" name="nl2_thuis" placeholder="0" required>
+              <span class="score-sep">–</span>
+              <input type="number" min="0" max="20" name="nl2_uit" placeholder="0" required>
+            </div>
+            <span class="team-name right">Zweden 🇸🇪</span>
+          </div>
+        </div>
+
+        <div class="match-row">
+          <div class="match-meta">Wedstrijd 36 &nbsp;·&nbsp; 25 juni 2026 &nbsp;·&nbsp; Groep F</div>
+          <div class="match-teams">
+            <span class="team-name">Tunesië 🇹🇳</span>
+            <div class="score-inputs">
+              <input type="number" min="0" max="20" name="nl3_thuis" placeholder="0" required>
+              <span class="score-sep">–</span>
+              <input type="number" min="0" max="20" name="nl3_uit" placeholder="0" required>
+            </div>
+            <span class="team-name right nl">🇳🇱 Nederland</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- GROEPSFASE WINNAARS -->
+  <div class="section-card">
+    <div class="section-header">
+      <span class="icon">🏆</span>
+      <h2>Groepsfase – Nummers 1 & 2</h2>
+      <span class="badge">12 GROEPEN</span>
+    </div>
+    <div class="section-body">
+      <p style="font-size:0.85rem;color:#666;margin-bottom:16px">Wie eindigt als nummer 1 en nummer 2 in elke groep?</p>
+      <div class="groups-grid">
+
+        <!-- GROEP A -->
+        <div class="group-card">
+          <div class="group-label">Groep A</div>
+          <p style="font-size:0.7rem;color:#888;margin-bottom:8px">Mexico · South Africa · South Korea · Tsjechië</p>
+          <label>Nr. 1</label>
+          <div class="select-wrap">
+            <select name="grpA_1" required>
+              <option value="">– kies –</option>
+              <option>Mexico</option>
+              <option>South Africa</option>
+              <option>South Korea</option>
+              <option>Tsjechië</option>
+            </select>
+          </div>
+          <label>Nr. 2</label>
+          <div class="select-wrap">
+            <select name="grpA_2" required>
+              <option value="">– kies –</option>
+              <option>Mexico</option>
+              <option>South Africa</option>
+              <option>South Korea</option>
+              <option>Tsjechië</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- GROEP B -->
+        <div class="group-card">
+          <div class="group-label">Groep B</div>
+          <p style="font-size:0.7rem;color:#888;margin-bottom:8px">Canada · Qatar · Switzerland · Bosnië</p>
+          <label>Nr. 1</label>
+          <div class="select-wrap">
+            <select name="grpB_1" required>
+              <option value="">– kies –</option>
+              <option>Canada</option>
+              <option>Qatar</option>
+              <option>Switzerland</option>
+              <option>Bosnië-Herzegovina</option>
+            </select>
+          </div>
+          <label>Nr. 2</label>
+          <div class="select-wrap">
+            <select name="grpB_2" required>
+              <option value="">– kies –</option>
+              <option>Canada</option>
+              <option>Qatar</option>
+              <option>Switzerland</option>
+              <option>Bosnië-Herzegovina</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- GROEP C -->
+        <div class="group-card">
+          <div class="group-label">Groep C</div>
+          <p style="font-size:0.7rem;color:#888;margin-bottom:8px">Brazil · Morocco · Haiti · Scotland</p>
+          <label>Nr. 1</label>
+          <div class="select-wrap">
+            <select name="grpC_1" required>
+              <option value="">– kies –</option>
+              <option>Brazil</option>
+              <option>Morocco</option>
+              <option>Haiti</option>
+              <option>Scotland</option>
+            </select>
+          </div>
+          <label>Nr. 2</label>
+          <div class="select-wrap">
+            <select name="grpC_2" required>
+              <option value="">– kies –</option>
+              <option>Brazil</option>
+              <option>Morocco</option>
+              <option>Haiti</option>
+              <option>Scotland</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- GROEP D -->
+        <div class="group-card">
+          <div class="group-label">Groep D</div>
+          <p style="font-size:0.7rem;color:#888;margin-bottom:8px">USA · Paraguay · Australia · Turkije</p>
+          <label>Nr. 1</label>
+          <div class="select-wrap">
+            <select name="grpD_1" required>
+              <option value="">– kies –</option>
+              <option>USA</option>
+              <option>Paraguay</option>
+              <option>Australia</option>
+              <option>Turkije</option>
+            </select>
+          </div>
+          <label>Nr. 2</label>
+          <div class="select-wrap">
+            <select name="grpD_2" required>
+              <option value="">– kies –</option>
+              <option>USA</option>
+              <option>Paraguay</option>
+              <option>Australia</option>
+              <option>Turkije</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- GROEP E -->
+        <div class="group-card">
+          <div class="group-label">Groep E</div>
+          <p style="font-size:0.7rem;color:#888;margin-bottom:8px">Germany · Curaçao · Ivory Coast · Ecuador</p>
+          <label>Nr. 1</label>
+          <div class="select-wrap">
+            <select name="grpE_1" required>
+              <option value="">– kies –</option>
+              <option>Germany</option>
+              <option>Curaçao</option>
+              <option>Ivory Coast</option>
+              <option>Ecuador</option>
+            </select>
+          </div>
+          <label>Nr. 2</label>
+          <div class="select-wrap">
+            <select name="grpE_2" required>
+              <option value="">– kies –</option>
+              <option>Germany</option>
+              <option>Curaçao</option>
+              <option>Ivory Coast</option>
+              <option>Ecuador</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- GROEP F -->
+        <div class="group-card" style="border-top-color: var(--gold);">
+          <div class="group-label" style="color:var(--gold)">Groep F 🇳🇱</div>
+          <p style="font-size:0.7rem;color:#888;margin-bottom:8px">Nederland · Japan · Zweden · Tunesië</p>
+          <label>Nr. 1</label>
+          <div class="select-wrap">
+            <select name="grpF_1" required>
+              <option value="">– kies –</option>
+              <option>Nederland</option>
+              <option>Japan</option>
+              <option>Zweden</option>
+              <option>Tunesië</option>
+            </select>
+          </div>
+          <label>Nr. 2</label>
+          <div class="select-wrap">
+            <select name="grpF_2" required>
+              <option value="">– kies –</option>
+              <option>Nederland</option>
+              <option>Japan</option>
+              <option>Zweden</option>
+              <option>Tunesië</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- GROEP G -->
+        <div class="group-card">
+          <div class="group-label">Groep G</div>
+          <p style="font-size:0.7rem;color:#888;margin-bottom:8px">Belgium · Egypt · Iran · New Zealand</p>
+          <label>Nr. 1</label>
+          <div class="select-wrap">
+            <select name="grpG_1" required>
+              <option value="">– kies –</option>
+              <option>Belgium</option>
+              <option>Egypt</option>
+              <option>Iran</option>
+              <option>New Zealand</option>
+            </select>
+          </div>
+          <label>Nr. 2</label>
+          <div class="select-wrap">
+            <select name="grpG_2" required>
+              <option value="">– kies –</option>
+              <option>Belgium</option>
+              <option>Egypt</option>
+              <option>Iran</option>
+              <option>New Zealand</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- GROEP H -->
+        <div class="group-card">
+          <div class="group-label">Groep H</div>
+          <p style="font-size:0.7rem;color:#888;margin-bottom:8px">Spain · Cape Verde · Saudi Arabia · Uruguay</p>
+          <label>Nr. 1</label>
+          <div class="select-wrap">
+            <select name="grpH_1" required>
+              <option value="">– kies –</option>
+              <option>Spain</option>
+              <option>Cape Verde</option>
+              <option>Saudi Arabia</option>
+              <option>Uruguay</option>
+            </select>
+          </div>
+          <label>Nr. 2</label>
+          <div class="select-wrap">
+            <select name="grpH_2" required>
+              <option value="">– kies –</option>
+              <option>Spain</option>
+              <option>Cape Verde</option>
+              <option>Saudi Arabia</option>
+              <option>Uruguay</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- GROEP I -->
+        <div class="group-card">
+          <div class="group-label">Groep I</div>
+          <p style="font-size:0.7rem;color:#888;margin-bottom:8px">France · Senegal · Irak · Norway</p>
+          <label>Nr. 1</label>
+          <div class="select-wrap">
+            <select name="grpI_1" required>
+              <option value="">– kies –</option>
+              <option>France</option>
+              <option>Senegal</option>
+              <option>Irak</option>
+              <option>Norway</option>
+            </select>
+          </div>
+          <label>Nr. 2</label>
+          <div class="select-wrap">
+            <select name="grpI_2" required>
+              <option value="">– kies –</option>
+              <option>France</option>
+              <option>Senegal</option>
+              <option>Irak</option>
+              <option>Norway</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- GROEP J -->
+        <div class="group-card">
+          <div class="group-label">Groep J</div>
+          <p style="font-size:0.7rem;color:#888;margin-bottom:8px">Argentina · Algeria · Austria · Jordan</p>
+          <label>Nr. 1</label>
+          <div class="select-wrap">
+            <select name="grpJ_1" required>
+              <option value="">– kies –</option>
+              <option>Argentina</option>
+              <option>Algeria</option>
+              <option>Austria</option>
+              <option>Jordan</option>
+            </select>
+          </div>
+          <label>Nr. 2</label>
+          <div class="select-wrap">
+            <select name="grpJ_2" required>
+              <option value="">– kies –</option>
+              <option>Argentina</option>
+              <option>Algeria</option>
+              <option>Austria</option>
+              <option>Jordan</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- GROEP K -->
+        <div class="group-card">
+          <div class="group-label">Groep K</div>
+          <p style="font-size:0.7rem;color:#888;margin-bottom:8px">Portugal · DR Congo · Uzbekistan · Colombia</p>
+          <label>Nr. 1</label>
+          <div class="select-wrap">
+            <select name="grpK_1" required>
+              <option value="">– kies –</option>
+              <option>Portugal</option>
+              <option>DR Congo</option>
+              <option>Uzbekistan</option>
+              <option>Colombia</option>
+            </select>
+          </div>
+          <label>Nr. 2</label>
+          <div class="select-wrap">
+            <select name="grpK_2" required>
+              <option value="">– kies –</option>
+              <option>Portugal</option>
+              <option>DR Congo</option>
+              <option>Uzbekistan</option>
+              <option>Colombia</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- GROEP L -->
+        <div class="group-card">
+          <div class="group-label">Groep L</div>
+          <p style="font-size:0.7rem;color:#888;margin-bottom:8px">England · Croatia · Ghana · Panama</p>
+          <label>Nr. 1</label>
+          <div class="select-wrap">
+            <select name="grpL_1" required>
+              <option value="">– kies –</option>
+              <option>England</option>
+              <option>Croatia</option>
+              <option>Ghana</option>
+              <option>Panama</option>
+            </select>
+          </div>
+          <label>Nr. 2</label>
+          <div class="select-wrap">
+            <select name="grpL_2" required>
+              <option value="">– kies –</option>
+              <option>England</option>
+              <option>Croatia</option>
+              <option>Ghana</option>
+              <option>Panama</option>
+            </select>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- KNOCK-OUT -->
+  <div class="section-card">
+    <div class="section-header">
+      <span class="icon">⚡</span>
+      <h2>Knock-out fase</h2>
+      <span class="badge">WINNERS</span>
+    </div>
+    <div class="section-body">
+      <p style="font-size:0.85rem;color:#666;margin-bottom:16px">Welk land wint elke ronde? Typ de landnaam in.</p>
+      <div class="ko-grid">
+
+        <div class="ko-row">
+          <div class="ko-label">Wie spelen de halve finales?
+            <span>Welke 4 landen winnen de kwartfinales?</span>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+            <div class="select-wrap">
+            <select name="kf1" required>
+              <option value="">– kies een land –</option>
+              <option value="Algeria">Algeria</option>
+              <option value="Argentina">Argentina</option>
+              <option value="Australia">Australia</option>
+              <option value="Austria">Austria</option>
+              <option value="Belgium">Belgium</option>
+              <option value="Bosnië-Herzegovina">Bosnië-Herzegovina</option>
+              <option value="Brazil">Brazil</option>
+              <option value="Canada">Canada</option>
+              <option value="Cape Verde">Cape Verde</option>
+              <option value="Colombia">Colombia</option>
+              <option value="Croatia">Croatia</option>
+              <option value="Curaçao">Curaçao</option>
+              <option value="DR Congo">DR Congo</option>
+              <option value="Ecuador">Ecuador</option>
+              <option value="Egypt">Egypt</option>
+              <option value="England">England</option>
+              <option value="France">France</option>
+              <option value="Germany">Germany</option>
+              <option value="Ghana">Ghana</option>
+              <option value="Haiti">Haiti</option>
+              <option value="Irak">Irak</option>
+              <option value="Iran">Iran</option>
+              <option value="Ivory Coast">Ivory Coast</option>
+              <option value="Japan">Japan</option>
+              <option value="Jordan">Jordan</option>
+              <option value="Mexico">Mexico</option>
+              <option value="Morocco">Morocco</option>
+              <option value="Nederland">Nederland</option>
+              <option value="New Zealand">New Zealand</option>
+              <option value="Norway">Norway</option>
+              <option value="Panama">Panama</option>
+              <option value="Paraguay">Paraguay</option>
+              <option value="Portugal">Portugal</option>
+              <option value="Qatar">Qatar</option>
+              <option value="Saudi Arabia">Saudi Arabia</option>
+              <option value="Scotland">Scotland</option>
+              <option value="Senegal">Senegal</option>
+              <option value="South Africa">South Africa</option>
+              <option value="South Korea">South Korea</option>
+              <option value="Spain">Spain</option>
+              <option value="Switzerland">Switzerland</option>
+              <option value="Tsjechië">Tsjechië</option>
+              <option value="Tunisia">Tunisia</option>
+              <option value="Turkije">Turkije</option>
+              <option value="USA">USA</option>
+              <option value="Uruguay">Uruguay</option>
+              <option value="Uzbekistan">Uzbekistan</option>
+              <option value="Zweden">Zweden</option>
+            </select>
+          </div>
+            <div class="select-wrap">
+            <select name="kf2" required>
+              <option value="">– kies een land –</option>
+              <option value="Algeria">Algeria</option>
+              <option value="Argentina">Argentina</option>
+              <option value="Australia">Australia</option>
+              <option value="Austria">Austria</option>
+              <option value="Belgium">Belgium</option>
+              <option value="Bosnië-Herzegovina">Bosnië-Herzegovina</option>
+              <option value="Brazil">Brazil</option>
+              <option value="Canada">Canada</option>
+              <option value="Cape Verde">Cape Verde</option>
+              <option value="Colombia">Colombia</option>
+              <option value="Croatia">Croatia</option>
+              <option value="Curaçao">Curaçao</option>
+              <option value="DR Congo">DR Congo</option>
+              <option value="Ecuador">Ecuador</option>
+              <option value="Egypt">Egypt</option>
+              <option value="England">England</option>
+              <option value="France">France</option>
+              <option value="Germany">Germany</option>
+              <option value="Ghana">Ghana</option>
+              <option value="Haiti">Haiti</option>
+              <option value="Irak">Irak</option>
+              <option value="Iran">Iran</option>
+              <option value="Ivory Coast">Ivory Coast</option>
+              <option value="Japan">Japan</option>
+              <option value="Jordan">Jordan</option>
+              <option value="Mexico">Mexico</option>
+              <option value="Morocco">Morocco</option>
+              <option value="Nederland">Nederland</option>
+              <option value="New Zealand">New Zealand</option>
+              <option value="Norway">Norway</option>
+              <option value="Panama">Panama</option>
+              <option value="Paraguay">Paraguay</option>
+              <option value="Portugal">Portugal</option>
+              <option value="Qatar">Qatar</option>
+              <option value="Saudi Arabia">Saudi Arabia</option>
+              <option value="Scotland">Scotland</option>
+              <option value="Senegal">Senegal</option>
+              <option value="South Africa">South Africa</option>
+              <option value="South Korea">South Korea</option>
+              <option value="Spain">Spain</option>
+              <option value="Switzerland">Switzerland</option>
+              <option value="Tsjechië">Tsjechië</option>
+              <option value="Tunisia">Tunisia</option>
+              <option value="Turkije">Turkije</option>
+              <option value="USA">USA</option>
+              <option value="Uruguay">Uruguay</option>
+              <option value="Uzbekistan">Uzbekistan</option>
+              <option value="Zweden">Zweden</option>
+            </select>
+          </div>
+            <div class="select-wrap">
+            <select name="kf3" required>
+              <option value="">– kies een land –</option>
+              <option value="Algeria">Algeria</option>
+              <option value="Argentina">Argentina</option>
+              <option value="Australia">Australia</option>
+              <option value="Austria">Austria</option>
+              <option value="Belgium">Belgium</option>
+              <option value="Bosnië-Herzegovina">Bosnië-Herzegovina</option>
+              <option value="Brazil">Brazil</option>
+              <option value="Canada">Canada</option>
+              <option value="Cape Verde">Cape Verde</option>
+              <option value="Colombia">Colombia</option>
+              <option value="Croatia">Croatia</option>
+              <option value="Curaçao">Curaçao</option>
+              <option value="DR Congo">DR Congo</option>
+              <option value="Ecuador">Ecuador</option>
+              <option value="Egypt">Egypt</option>
+              <option value="England">England</option>
+              <option value="France">France</option>
+              <option value="Germany">Germany</option>
+              <option value="Ghana">Ghana</option>
+              <option value="Haiti">Haiti</option>
+              <option value="Irak">Irak</option>
+              <option value="Iran">Iran</option>
+              <option value="Ivory Coast">Ivory Coast</option>
+              <option value="Japan">Japan</option>
+              <option value="Jordan">Jordan</option>
+              <option value="Mexico">Mexico</option>
+              <option value="Morocco">Morocco</option>
+              <option value="Nederland">Nederland</option>
+              <option value="New Zealand">New Zealand</option>
+              <option value="Norway">Norway</option>
+              <option value="Panama">Panama</option>
+              <option value="Paraguay">Paraguay</option>
+              <option value="Portugal">Portugal</option>
+              <option value="Qatar">Qatar</option>
+              <option value="Saudi Arabia">Saudi Arabia</option>
+              <option value="Scotland">Scotland</option>
+              <option value="Senegal">Senegal</option>
+              <option value="South Africa">South Africa</option>
+              <option value="South Korea">South Korea</option>
+              <option value="Spain">Spain</option>
+              <option value="Switzerland">Switzerland</option>
+              <option value="Tsjechië">Tsjechië</option>
+              <option value="Tunisia">Tunisia</option>
+              <option value="Turkije">Turkije</option>
+              <option value="USA">USA</option>
+              <option value="Uruguay">Uruguay</option>
+              <option value="Uzbekistan">Uzbekistan</option>
+              <option value="Zweden">Zweden</option>
+            </select>
+          </div>
+            <div class="select-wrap">
+            <select name="kf4" required>
+              <option value="">– kies een land –</option>
+              <option value="Algeria">Algeria</option>
+              <option value="Argentina">Argentina</option>
+              <option value="Australia">Australia</option>
+              <option value="Austria">Austria</option>
+              <option value="Belgium">Belgium</option>
+              <option value="Bosnië-Herzegovina">Bosnië-Herzegovina</option>
+              <option value="Brazil">Brazil</option>
+              <option value="Canada">Canada</option>
+              <option value="Cape Verde">Cape Verde</option>
+              <option value="Colombia">Colombia</option>
+              <option value="Croatia">Croatia</option>
+              <option value="Curaçao">Curaçao</option>
+              <option value="DR Congo">DR Congo</option>
+              <option value="Ecuador">Ecuador</option>
+              <option value="Egypt">Egypt</option>
+              <option value="England">England</option>
+              <option value="France">France</option>
+              <option value="Germany">Germany</option>
+              <option value="Ghana">Ghana</option>
+              <option value="Haiti">Haiti</option>
+              <option value="Irak">Irak</option>
+              <option value="Iran">Iran</option>
+              <option value="Ivory Coast">Ivory Coast</option>
+              <option value="Japan">Japan</option>
+              <option value="Jordan">Jordan</option>
+              <option value="Mexico">Mexico</option>
+              <option value="Morocco">Morocco</option>
+              <option value="Nederland">Nederland</option>
+              <option value="New Zealand">New Zealand</option>
+              <option value="Norway">Norway</option>
+              <option value="Panama">Panama</option>
+              <option value="Paraguay">Paraguay</option>
+              <option value="Portugal">Portugal</option>
+              <option value="Qatar">Qatar</option>
+              <option value="Saudi Arabia">Saudi Arabia</option>
+              <option value="Scotland">Scotland</option>
+              <option value="Senegal">Senegal</option>
+              <option value="South Africa">South Africa</option>
+              <option value="South Korea">South Korea</option>
+              <option value="Spain">Spain</option>
+              <option value="Switzerland">Switzerland</option>
+              <option value="Tsjechië">Tsjechië</option>
+              <option value="Tunisia">Tunisia</option>
+              <option value="Turkije">Turkije</option>
+              <option value="USA">USA</option>
+              <option value="Uruguay">Uruguay</option>
+              <option value="Uzbekistan">Uzbekistan</option>
+              <option value="Zweden">Zweden</option>
+            </select>
+          </div>
+          </div>
+        </div>
+
+        <div class="ko-row">
+          <div class="ko-label">Wie spelen de finale?
+            <span>Welke 2 landen winnen de halve finales?</span>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+            <div class="select-wrap">
+            <select name="hf1" required>
+              <option value="">– kies een land –</option>
+              <option value="Algeria">Algeria</option>
+              <option value="Argentina">Argentina</option>
+              <option value="Australia">Australia</option>
+              <option value="Austria">Austria</option>
+              <option value="Belgium">Belgium</option>
+              <option value="Bosnië-Herzegovina">Bosnië-Herzegovina</option>
+              <option value="Brazil">Brazil</option>
+              <option value="Canada">Canada</option>
+              <option value="Cape Verde">Cape Verde</option>
+              <option value="Colombia">Colombia</option>
+              <option value="Croatia">Croatia</option>
+              <option value="Curaçao">Curaçao</option>
+              <option value="DR Congo">DR Congo</option>
+              <option value="Ecuador">Ecuador</option>
+              <option value="Egypt">Egypt</option>
+              <option value="England">England</option>
+              <option value="France">France</option>
+              <option value="Germany">Germany</option>
+              <option value="Ghana">Ghana</option>
+              <option value="Haiti">Haiti</option>
+              <option value="Irak">Irak</option>
+              <option value="Iran">Iran</option>
+              <option value="Ivory Coast">Ivory Coast</option>
+              <option value="Japan">Japan</option>
+              <option value="Jordan">Jordan</option>
+              <option value="Mexico">Mexico</option>
+              <option value="Morocco">Morocco</option>
+              <option value="Nederland">Nederland</option>
+              <option value="New Zealand">New Zealand</option>
+              <option value="Norway">Norway</option>
+              <option value="Panama">Panama</option>
+              <option value="Paraguay">Paraguay</option>
+              <option value="Portugal">Portugal</option>
+              <option value="Qatar">Qatar</option>
+              <option value="Saudi Arabia">Saudi Arabia</option>
+              <option value="Scotland">Scotland</option>
+              <option value="Senegal">Senegal</option>
+              <option value="South Africa">South Africa</option>
+              <option value="South Korea">South Korea</option>
+              <option value="Spain">Spain</option>
+              <option value="Switzerland">Switzerland</option>
+              <option value="Tsjechië">Tsjechië</option>
+              <option value="Tunisia">Tunisia</option>
+              <option value="Turkije">Turkije</option>
+              <option value="USA">USA</option>
+              <option value="Uruguay">Uruguay</option>
+              <option value="Uzbekistan">Uzbekistan</option>
+              <option value="Zweden">Zweden</option>
+            </select>
+          </div>
+            <div class="select-wrap">
+            <select name="hf2" required>
+              <option value="">– kies een land –</option>
+              <option value="Algeria">Algeria</option>
+              <option value="Argentina">Argentina</option>
+              <option value="Australia">Australia</option>
+              <option value="Austria">Austria</option>
+              <option value="Belgium">Belgium</option>
+              <option value="Bosnië-Herzegovina">Bosnië-Herzegovina</option>
+              <option value="Brazil">Brazil</option>
+              <option value="Canada">Canada</option>
+              <option value="Cape Verde">Cape Verde</option>
+              <option value="Colombia">Colombia</option>
+              <option value="Croatia">Croatia</option>
+              <option value="Curaçao">Curaçao</option>
+              <option value="DR Congo">DR Congo</option>
+              <option value="Ecuador">Ecuador</option>
+              <option value="Egypt">Egypt</option>
+              <option value="England">England</option>
+              <option value="France">France</option>
+              <option value="Germany">Germany</option>
+              <option value="Ghana">Ghana</option>
+              <option value="Haiti">Haiti</option>
+              <option value="Irak">Irak</option>
+              <option value="Iran">Iran</option>
+              <option value="Ivory Coast">Ivory Coast</option>
+              <option value="Japan">Japan</option>
+              <option value="Jordan">Jordan</option>
+              <option value="Mexico">Mexico</option>
+              <option value="Morocco">Morocco</option>
+              <option value="Nederland">Nederland</option>
+              <option value="New Zealand">New Zealand</option>
+              <option value="Norway">Norway</option>
+              <option value="Panama">Panama</option>
+              <option value="Paraguay">Paraguay</option>
+              <option value="Portugal">Portugal</option>
+              <option value="Qatar">Qatar</option>
+              <option value="Saudi Arabia">Saudi Arabia</option>
+              <option value="Scotland">Scotland</option>
+              <option value="Senegal">Senegal</option>
+              <option value="South Africa">South Africa</option>
+              <option value="South Korea">South Korea</option>
+              <option value="Spain">Spain</option>
+              <option value="Switzerland">Switzerland</option>
+              <option value="Tsjechië">Tsjechië</option>
+              <option value="Tunisia">Tunisia</option>
+              <option value="Turkije">Turkije</option>
+              <option value="USA">USA</option>
+              <option value="Uruguay">Uruguay</option>
+              <option value="Uzbekistan">Uzbekistan</option>
+              <option value="Zweden">Zweden</option>
+            </select>
+          </div>
+          </div>
+        </div>
+
+        <div class="ko-row" style="border-left-color: var(--navy);">
+          <div class="ko-label" style="color:var(--navy)">🏆 Wie wordt wereldkampioen?
+            <span>Wie wint de finale?</span>
+          </div>
+          <div class="select-wrap">
+            <select name="winnaar" required>
+              <option value="">– kies een land –</option>
+              <option value="Algeria">Algeria</option>
+              <option value="Argentina">Argentina</option>
+              <option value="Australia">Australia</option>
+              <option value="Austria">Austria</option>
+              <option value="Belgium">Belgium</option>
+              <option value="Bosnië-Herzegovina">Bosnië-Herzegovina</option>
+              <option value="Brazil">Brazil</option>
+              <option value="Canada">Canada</option>
+              <option value="Cape Verde">Cape Verde</option>
+              <option value="Colombia">Colombia</option>
+              <option value="Croatia">Croatia</option>
+              <option value="Curaçao">Curaçao</option>
+              <option value="DR Congo">DR Congo</option>
+              <option value="Ecuador">Ecuador</option>
+              <option value="Egypt">Egypt</option>
+              <option value="England">England</option>
+              <option value="France">France</option>
+              <option value="Germany">Germany</option>
+              <option value="Ghana">Ghana</option>
+              <option value="Haiti">Haiti</option>
+              <option value="Irak">Irak</option>
+              <option value="Iran">Iran</option>
+              <option value="Ivory Coast">Ivory Coast</option>
+              <option value="Japan">Japan</option>
+              <option value="Jordan">Jordan</option>
+              <option value="Mexico">Mexico</option>
+              <option value="Morocco">Morocco</option>
+              <option value="Nederland">Nederland</option>
+              <option value="New Zealand">New Zealand</option>
+              <option value="Norway">Norway</option>
+              <option value="Panama">Panama</option>
+              <option value="Paraguay">Paraguay</option>
+              <option value="Portugal">Portugal</option>
+              <option value="Qatar">Qatar</option>
+              <option value="Saudi Arabia">Saudi Arabia</option>
+              <option value="Scotland">Scotland</option>
+              <option value="Senegal">Senegal</option>
+              <option value="South Africa">South Africa</option>
+              <option value="South Korea">South Korea</option>
+              <option value="Spain">Spain</option>
+              <option value="Switzerland">Switzerland</option>
+              <option value="Tsjechië">Tsjechië</option>
+              <option value="Tunisia">Tunisia</option>
+              <option value="Turkije">Turkije</option>
+              <option value="USA">USA</option>
+              <option value="Uruguay">Uruguay</option>
+              <option value="Uzbekistan">Uzbekistan</option>
+              <option value="Zweden">Zweden</option>
+            </select>
+          </div>
+        </div>
+
+
+        <div class="ko-row" style="border-left-color: #999;">
+          <div class="ko-label">🥉 Wie wordt derde?
+            <span>Wie wint de troostfinale?</span>
+          </div>
+          <div class="select-wrap">
+            <select name="derde" required>
+              <option value="">– kies een land –</option>
+              <option value="Algeria">Algeria</option>
+              <option value="Argentina">Argentina</option>
+              <option value="Australia">Australia</option>
+              <option value="Austria">Austria</option>
+              <option value="Belgium">Belgium</option>
+              <option value="Bosnië-Herzegovina">Bosnië-Herzegovina</option>
+              <option value="Brazil">Brazil</option>
+              <option value="Canada">Canada</option>
+              <option value="Cape Verde">Cape Verde</option>
+              <option value="Colombia">Colombia</option>
+              <option value="Croatia">Croatia</option>
+              <option value="Curaçao">Curaçao</option>
+              <option value="DR Congo">DR Congo</option>
+              <option value="Ecuador">Ecuador</option>
+              <option value="Egypt">Egypt</option>
+              <option value="England">England</option>
+              <option value="France">France</option>
+              <option value="Germany">Germany</option>
+              <option value="Ghana">Ghana</option>
+              <option value="Haiti">Haiti</option>
+              <option value="Irak">Irak</option>
+              <option value="Iran">Iran</option>
+              <option value="Ivory Coast">Ivory Coast</option>
+              <option value="Japan">Japan</option>
+              <option value="Jordan">Jordan</option>
+              <option value="Mexico">Mexico</option>
+              <option value="Morocco">Morocco</option>
+              <option value="Nederland">Nederland</option>
+              <option value="New Zealand">New Zealand</option>
+              <option value="Norway">Norway</option>
+              <option value="Panama">Panama</option>
+              <option value="Paraguay">Paraguay</option>
+              <option value="Portugal">Portugal</option>
+              <option value="Qatar">Qatar</option>
+              <option value="Saudi Arabia">Saudi Arabia</option>
+              <option value="Scotland">Scotland</option>
+              <option value="Senegal">Senegal</option>
+              <option value="South Africa">South Africa</option>
+              <option value="South Korea">South Korea</option>
+              <option value="Spain">Spain</option>
+              <option value="Switzerland">Switzerland</option>
+              <option value="Tsjechië">Tsjechië</option>
+              <option value="Tunisia">Tunisia</option>
+              <option value="Turkije">Turkije</option>
+              <option value="USA">USA</option>
+              <option value="Uruguay">Uruguay</option>
+              <option value="Uzbekistan">Uzbekistan</option>
+              <option value="Zweden">Zweden</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="ko-row" style="border-left-color: var(--gold); background: var(--off-white);">
+          <div class="ko-label" style="color:var(--gold)">🎯 Tiebreak-vraag
+            <span>Bij gelijke stand beslist deze vraag!</span>
+          </div>
+          <label style="font-size:0.8rem;color:#555;margin-bottom:6px;display:block">Hoeveel goals worden er in totaal gescoord tijdens het hele WK 2026?</label>
+          <input type="number" min="0" max="500" name="tiebreak_goals" placeholder="Jouw schatting" required>
+          <p style="font-size:0.75rem;color:#999;margin-top:6px;font-style:italic">Degene die het dichtstbij zit wint bij gelijke punten.</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div id="success-msg">
+    <h3>✅ Voorspelling ontvangen!</h3>
+    <p>Bedankt voor je deelname. Veel succes – en kom de Ley niet in van spanning! ⚽</p>
+  </div>
+
+
+  <!-- PUNTENTELLING -->
+  <div id="puntentelling"></div>
+  <div class="section-card">
+    <div class="section-header">
+      <span class="icon">📊</span>
+      <h2>Puntentelling</h2>
+      <span class="badge">HOE WERKT HET?</span>
+      <a href="#top" style="margin-left:12px;background:var(--gold);color:var(--navy);padding:5px 12px;border-radius:20px;font-weight:700;font-size:0.75rem;text-decoration:none;white-space:nowrap;">↑ Naar boven</a>
+    </div>
+    <div class="section-body">
+      <p style="font-size:0.85rem;color:#666;margin-bottom:16px">Zo worden jouw voorspellingen beoordeeld na afloop van het WK:</p>
+
+      <div class="match-grid">
+
+        <div class="match-row" style="border-left-color: var(--gold);">
+          <div class="match-meta">🇳🇱 Nederland-wedstrijden</div>
+          <table style="width:100%;border-collapse:collapse;font-size:0.88rem;">
+            <tr>
+              <td style="padding:5px 0;color:#333">Juiste uitslag (bijv. 2-1 voorspeld én 2-1 geworden)</td>
+              <td style="text-align:right;font-weight:700;color:var(--navy)">3 punten</td>
+            </tr>
+            <tr style="border-top:1px solid #eee">
+              <td style="padding:5px 0;color:#333">Juiste winnaar of gelijkspel, maar verkeerde cijfers</td>
+              <td style="text-align:right;font-weight:700;color:var(--navy)">1 punt</td>
+            </tr>
+          </table>
+        </div>
+
+        <div class="match-row" style="border-left-color: var(--gold);">
+          <div class="match-meta">🏆 Groepsfase – nummers 1 & 2</div>
+          <table style="width:100%;border-collapse:collapse;font-size:0.88rem;">
+            <tr>
+              <td style="padding:5px 0;color:#333">Juiste nummer 1 per groep (12 groepen)</td>
+              <td style="text-align:right;font-weight:700;color:var(--navy)">2 punten</td>
+            </tr>
+            <tr style="border-top:1px solid #eee">
+              <td style="padding:5px 0;color:#333">Juiste nummer 2 per groep (12 groepen)</td>
+              <td style="text-align:right;font-weight:700;color:var(--navy)">2 punten</td>
+            </tr>
+            <tr style="border-top:1px solid #eee">
+              <td style="padding:5px 0;color:#333">Juist land maar verkeerde positie (nr.1↔nr.2)</td>
+              <td style="text-align:right;font-weight:700;color:var(--navy)">1 punt</td>
+            </tr>
+          </table>
+        </div>
+
+        <div class="match-row" style="border-left-color: var(--gold);">
+          <div class="match-meta">⚡ Knock-out fase</div>
+          <table style="width:100%;border-collapse:collapse;font-size:0.88rem;">
+            <tr>
+              <td style="padding:5px 0;color:#333">Juiste kwartfinalist (4 landen)</td>
+              <td style="text-align:right;font-weight:700;color:var(--navy)">2 punten per land</td>
+            </tr>
+            <tr style="border-top:1px solid #eee">
+              <td style="padding:5px 0;color:#333">Juiste finalist (2 landen)</td>
+              <td style="text-align:right;font-weight:700;color:var(--navy)">3 punten per land</td>
+            </tr>
+            <tr style="border-top:1px solid #eee">
+              <td style="padding:5px 0;color:#333">🥉 Juiste derde plaats</td>
+              <td style="text-align:right;font-weight:700;color:var(--navy)">2 punten</td>
+            </tr>
+            <tr style="border-top:1px solid #eee">
+              <td style="padding:5px 0;color:#333">🏆 Juiste wereldkampioen</td>
+              <td style="text-align:right;font-weight:700;color:var(--gold);font-size:1rem">5 punten</td>
+            </tr>
+          </table>
+        </div>
+
+        <div class="match-row" style="background:var(--navy);border-left-color:var(--gold);">
+          <div class="match-meta" style="color:rgba(255,255,255,0.6)">Maximum te behalen punten</div>
+          <table style="width:100%;border-collapse:collapse;font-size:0.88rem;">
+            <tr>
+              <td style="padding:3px 0;color:rgba(255,255,255,0.85)">Nederland-wedstrijden (3 × 3)</td>
+              <td style="text-align:right;font-weight:700;color:var(--gold-light)">9 punten</td>
+            </tr>
+            <tr>
+              <td style="padding:3px 0;color:rgba(255,255,255,0.85)">Groepsfase (12 × 2 + 12 × 2)</td>
+              <td style="text-align:right;font-weight:700;color:var(--gold-light)">48 punten</td>
+            </tr>
+            <tr>
+              <td style="padding:3px 0;color:rgba(255,255,255,0.85)">Knock-out fase</td>
+              <td style="text-align:right;font-weight:700;color:var(--gold-light)">19 punten</td>
+            </tr>
+            <tr style="border-top:1px solid rgba(255,255,255,0.2);margin-top:4px">
+              <td style="padding:5px 0;color:white;font-weight:700">Totaal maximum</td>
+              <td style="text-align:right;font-weight:700;color:var(--gold-light);font-size:1.1rem">76 punten</td>
+            </tr>
+          </table>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</form>
+
+<div class="submit-wrap">
+  <button type="submit" form="poule-form" class="submit-btn">
+    <span>📨 &nbsp; Verstuur per e-mail</span>
+  </button>
+  <p class="submit-note">Opent je e-mailprogramma met de voorspelling kant-en-klaar ingevuld.</p>
+
+  <button type="button" onclick="kopieerVoorspelling()" class="submit-btn" id="kopieer-btn"
+    style="margin-top:14px;background:linear-gradient(135deg,#2a5298 0%,#1a3d73 100%);">
+    <span>📋 &nbsp; Kopieer voorspelling</span>
+  </button>
+  <p class="submit-note">Geen e-mailapp? Kopieer je voorspelling en stuur die via WhatsApp naar de organisatie, of lever hem persoonlijk in. De organisatie plakt hem direct in Excel.</p>
+
+  <div id="kopieer-bevestiging" style="display:none;background:#2a7a3b;color:white;
+    border-radius:12px;padding:16px;text-align:center;margin-top:14px;">
+    <strong>✅ Gekopieerd!</strong><br>
+    <span style="font-size:.85rem;opacity:.9">Plak de tekst (Ctrl+V) in WhatsApp, of geef hem door aan de organisatie.</span>
+  </div>
+
+
+  <a href="#top" class="back-to-top">↑ Terug naar boven</a>
+
+</div>
+
+<footer>
+  <strong>WK Poule 2026 – Hotrodradio</strong><br>
+  Puntentelling volgt nog · Vragen? Spreek de organisatie aan
+</footer>
+<div style="position:fixed;bottom:8px;right:12px;font-size:.7rem;
+  color:rgba(255,255,255,.4);background:rgba(0,0,0,.3);
+  padding:2px 8px;border-radius:10px;pointer-events:none;">
+  v1.5 HRR – mei 2026
+</div>
+
+<script>
+function bouwExcelWaarden(data) {
+  // Alleen waarden, één per regel, exact matching met Excel rijen
+  // Lege regel op separator-rijen zodat Ctrl+V perfect uitlijnt
+  return [
+    data.naam,
+    data.appartement,
+    data.email || '',
+    '',
+    data.nl1_thuis,
+    data.nl1_uit,
+    data.nl2_thuis,
+    data.nl2_uit,
+    data.nl3_thuis,
+    data.nl3_uit,
+    '',
+    data.grpA_1, data.grpA_2,
+    data.grpB_1, data.grpB_2,
+    data.grpC_1, data.grpC_2,
+    data.grpD_1, data.grpD_2,
+    data.grpE_1, data.grpE_2,
+    data.grpF_1, data.grpF_2,
+    data.grpG_1, data.grpG_2,
+    data.grpH_1, data.grpH_2,
+    data.grpI_1, data.grpI_2,
+    data.grpJ_1, data.grpJ_2,
+    data.grpK_1, data.grpK_2,
+    data.grpL_1, data.grpL_2,
+    '',
+    data.kf1, data.kf2, data.kf3, data.kf4,
+    data.hf1, data.hf2,
+    data.derde,
+    data.winnaar,
+    '',
+    data.tiebreak_goals
+  ].join('\n');
+}
+
+function bouwTekst(data) {
+  return `WK POULE 2026 – LANGS DE LEY
+====================================================
+PLAK ALLES HIERONDER IN EEN KOLOM IN EXCEL
+====================================================
+NAAM:${data.naam}
+APPARTEMENT:${data.appartement}
+EMAIL:${data.email || '-'}
+---
+NL-JAPAN:${data.nl1_thuis}-${data.nl1_uit}
+NL-ZWEDEN:${data.nl2_thuis}-${data.nl2_uit}
+TUNESIE-NL:${data.nl3_thuis}-${data.nl3_uit}
+---
+GRP-A-1:${data.grpA_1}
+GRP-A-2:${data.grpA_2}
+GRP-B-1:${data.grpB_1}
+GRP-B-2:${data.grpB_2}
+GRP-C-1:${data.grpC_1}
+GRP-C-2:${data.grpC_2}
+GRP-D-1:${data.grpD_1}
+GRP-D-2:${data.grpD_2}
+GRP-E-1:${data.grpE_1}
+GRP-E-2:${data.grpE_2}
+GRP-F-1:${data.grpF_1}
+GRP-F-2:${data.grpF_2}
+GRP-G-1:${data.grpG_1}
+GRP-G-2:${data.grpG_2}
+GRP-H-1:${data.grpH_1}
+GRP-H-2:${data.grpH_2}
+GRP-I-1:${data.grpI_1}
+GRP-I-2:${data.grpI_2}
+GRP-J-1:${data.grpJ_1}
+GRP-J-2:${data.grpJ_2}
+GRP-K-1:${data.grpK_1}
+GRP-K-2:${data.grpK_2}
+GRP-L-1:${data.grpL_1}
+GRP-L-2:${data.grpL_2}
+---
+KF-1:${data.kf1}
+KF-2:${data.kf2}
+KF-3:${data.kf3}
+KF-4:${data.kf4}
+HF-1:${data.hf1}
+HF-2:${data.hf2}
+DERDE:${data.derde}
+KAMPIOEN:${data.winnaar}
+---
+TIEBREAK:${data.tiebreak_goals}
+====================================================`;
+}
+
+function kopieerVoorspelling() {
+  const form = document.getElementById('poule-form');
+  if (!form.checkValidity()) { form.reportValidity(); return; }
+  const fd = new FormData(form);
+  const data = Object.fromEntries(fd.entries());
+  const tekst = bouwExcelWaarden(data);
+  navigator.clipboard.writeText(tekst).then(() => {
+    document.getElementById('kopieer-bevestiging').style.display = 'block';
+    document.getElementById('kopieer-btn').querySelector('span').textContent = '✅  Gekopieerd!';
+    setTimeout(() => {
+      document.getElementById('kopieer-btn').querySelector('span').textContent = '📋   Kopieer voorspelling';
+      document.getElementById('kopieer-bevestiging').style.display = 'none';
+    }, 4000);
+  }).catch(() => {
+    const ta = document.createElement('textarea');
+    ta.value = tekst; document.body.appendChild(ta);
+    ta.select(); document.execCommand('copy'); document.body.removeChild(ta);
+    document.getElementById('kopieer-bevestiging').style.display = 'block';
+  });
+}
+
+function handleSubmit(e) {
+  e.preventDefault();
+  const fd = new FormData(e.target);
+  const data = Object.fromEntries(fd.entries());
+
+  const body = bouwExcelWaarden(data);
+
+  const subject = encodeURIComponent('WK Poule 2026 – Voorspelling van ' + data.naam);
+  const bodyEncoded = encodeURIComponent(body);
+
+  // Open mail-client van de gebruiker
+  window.location.href = `mailto:info@hotrodradio.nl?subject=${subject}&body=${bodyEncoded}`;
+
+  // Toon succesbericht
+  document.getElementById('success-msg').style.display = 'block';
+  document.getElementById('success-msg').scrollIntoView({ behavior: 'smooth' });
+}
+</script>
+
+</body>
+</html>

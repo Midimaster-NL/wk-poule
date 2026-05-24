@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Speelschema WK 2026 – Hotrodradio</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy:#0d2a54; --gold:#c9952a; --gold-light:#f0b93a;
+    --oranje:#FF6600; --off-white:#f7f5f0; --gray:#e8e4dc; --white:#ffffff;
+  }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { font-family:'DM Sans',sans-serif; background:var(--off-white); color:#1a1a2e; }
+  header { background:var(--navy); position:relative; overflow:hidden; }
+  header::before { content:''; position:absolute; inset:0;
+    background:radial-gradient(ellipse at 20% 50%,rgba(201,149,42,.15) 0%,transparent 60%); }
+  .header-inner { max-width:960px; margin:0 auto; padding:24px 20px 20px;
+    display:flex; flex-direction:column; align-items:center; gap:14px; position:relative; z-index:1; }
+  .logo-wrap { background:white; border-radius:14px; padding:12px 22px; box-shadow:0 6px 28px rgba(0,0,0,.35); }
+  .logo-wrap img { height:80px; width:auto; display:block; }
+  .header-title { text-align:center; }
+  .header-title h1 { font-family:'Bebas Neue',sans-serif; font-size:clamp(2.2rem,6vw,3.5rem);
+    color:white; letter-spacing:.06em; line-height:.95; }
+  .header-title h1 span { color:var(--gold-light); }
+  .header-title p { color:rgba(255,255,255,.7); font-size:.9rem; margin-top:5px; }
+  .gold-bar { height:4px; background:linear-gradient(90deg,transparent,var(--gold),var(--gold-light),var(--gold),transparent); }
+
+  .container { max-width:960px; margin:0 auto; padding:20px 16px 40px; }
+
+  .nav-links { display:flex; gap:10px; justify-content:center; margin-bottom:20px; flex-wrap:wrap; }
+  .nav-links a { background:var(--navy); color:white; padding:8px 18px; border-radius:20px;
+    text-decoration:none; font-size:.85rem; font-weight:600; transition:background .2s; }
+  .nav-links a:hover, .nav-links a.active { background:var(--gold); color:var(--navy); }
+
+  /* FILTER */
+  .filter-tabs { display:flex; gap:8px; justify-content:center; flex-wrap:wrap; margin-bottom:20px; }
+  .ftab { padding:7px 16px; border-radius:20px; border:2px solid var(--navy);
+    background:white; color:var(--navy); font-weight:600; font-size:.82rem; cursor:pointer; transition:all .2s; }
+  .ftab:hover, .ftab.active { background:var(--navy); color:white; }
+  .ftab.nl { border-color:var(--oranje); color:var(--oranje); }
+  .ftab.nl:hover, .ftab.nl.active { background:var(--oranje); color:white; }
+
+  /* FASE BLOK */
+  .fase { margin-bottom:28px; }
+  .fase-hdr { background:var(--navy); border-radius:12px 12px 0 0; padding:12px 18px;
+    display:flex; align-items:center; gap:10px; }
+  .fase-hdr.ko { background:var(--gold); }
+  .fase-hdr h2 { font-family:'Bebas Neue',sans-serif; font-size:1.2rem; letter-spacing:.08em; color:white; }
+  .fase-hdr.ko h2 { color:var(--navy); }
+  .fase-hdr .ronde-badge { margin-left:auto; background:rgba(255,255,255,.2); color:white;
+    font-size:.72rem; font-weight:700; padding:3px 10px; border-radius:12px; }
+  .fase-hdr.ko .ronde-badge { background:rgba(13,42,84,.2); color:var(--navy); }
+
+  .wedstrijden { background:white; border-radius:0 0 12px 12px; box-shadow:0 2px 14px rgba(13,42,84,.08); overflow:hidden; }
+
+  /* RONDE HEADER binnen fase */
+  .ronde-hdr { background:#e8eef7; padding:7px 16px; font-size:.78rem; font-weight:700;
+    color:var(--navy); letter-spacing:.04em; text-transform:uppercase; }
+
+  /* WEDSTRIJD ROW */
+  .match { display:grid; grid-template-columns:90px 1fr auto 1fr 100px;
+    align-items:center; gap:8px; padding:9px 16px;
+    border-bottom:1px solid var(--gray); transition:background .15s; }
+  .match:last-child { border-bottom:none; }
+  .match:hover { background:#f7f5f0; }
+  .match.nl { background:#fffbf0; border-left:3px solid var(--oranje); }
+  .match.nl:hover { background:#fff5d6; }
+  .match.hidden { display:none !important; }
+
+  .match-datum { font-size:.75rem; color:#666; }
+  .match-datum strong { display:block; color:var(--navy); font-size:.8rem; }
+  .team { font-size:.88rem; font-weight:500; }
+  .team.right { text-align:right; }
+  .team.nl-team { color:var(--oranje); font-weight:700; }
+  .vs { font-weight:700; color:#ccc; font-size:.9rem; text-align:center; }
+  .stad { font-size:.72rem; color:#aaa; text-align:right; }
+
+  .back-to-top { display:block; text-align:center; margin:24px auto 0; padding:10px 28px;
+    background:var(--navy); color:white; border-radius:24px; text-decoration:none;
+    font-weight:600; font-size:.88rem; width:fit-content; transition:background .2s; }
+  .back-to-top:hover { background:var(--gold); color:var(--navy); }
+
+  footer { background:var(--navy); color:rgba(255,255,255,.5); text-align:center;
+    padding:18px; font-size:.8rem; margin-top:20px; }
+  footer strong { color:var(--gold); }
+
+  @media(max-width:600px) {
+    .match { grid-template-columns:70px 1fr auto 1fr; gap:5px; padding:8px 10px; }
+    .stad { display:none; }
+    .team { font-size:.8rem; }
+  }
+</style>
+</head>
+<body id="top">
+
+<header>
+  <div class="header-inner">
+    <div class="logo-wrap">
+      <img src="data:image/jpeg;base64,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" alt="Hotrodradio" style="height:80px;width:auto;">
+    </div>
+    <div class="header-title">
+      <h1>WK <span>Speelschema</span> 2026</h1>
+      <p>Alle wedstrijden – Hotrodradio</p>
+    </div>
+  </div>
+</header>
+<div class="gold-bar"></div>
+
+<div class="container">
+
+  <div class="nav-links">
+    <a href="wkpoulehrr.html">⚽ Poule invullen</a>
+    <a href="scorebord.html">🏆 Scorebord</a>
+    <a href="tiplijst.html">📊 Tiplijst groepsfase</a>
+    <a href="speelschema.html" class="active">📅 Speelschema</a>
+  </div>
+
+  <div class="filter-tabs">
+    <button class="ftab active" onclick="setFilter('all',this)">Alle wedstrijden</button>
+    <button class="ftab nl" onclick="setFilter('nl',this)">🇳🇱 Alleen Nederland</button>
+    <button class="ftab" onclick="setFilter('groep',this)">Groepsfase</button>
+    <button class="ftab" onclick="setFilter('ko',this)">Knock-out</button>
+  </div>
+
+  <div id="schema">
+
+    <!-- GROEPSFASE -->
+    <div class="fase" data-fase="groep">
+      <div class="fase-hdr">
+        <h2>⚽ Groepsfase</h2>
+        <span class="ronde-badge">72 wedstrijden · 11–28 juni 2026</span>
+      </div>
+      <div class="wedstrijden">
+
+        <div class="ronde-hdr">Speelronde 1</div>
+        <div class="match" data-nl="false"><span class="match-datum"><strong>11 jun</strong>21:00</span><span class="team right">Mexico</span><span class="vs">vs</span><span class="team">Zuid-Afrika</span><span class="stad">–</span></div>
+        <div class="match" data-nl="false"><span class="match-datum"><strong>12 jun</strong>04:00</span><span class="team right">Zuid-Korea</span><span class="vs">vs</span><span class="team">Tsjechië</span><span class="stad">–</span></div>
+        <div class="match" data-nl="false"><span class="match-datum"><strong>12 jun</strong>21:00</span><span class="team right">Canada</span><span class="vs">vs</span><span class="team">Bosnië Herzegovina</span><span class="stad">–</span></div>
+        <div class="match" data-nl="false"><span class="match-datum"><strong>13 jun</strong>03:00</span><span class="team right">Verenigde Staten</span><span class="vs">vs</span><span class="team">Paraguay</span><span class="stad">–</span></div>
+        <div class="match" data-nl="false"><span class="match-datum"><strong>13 jun</strong>21:00</span><span class="team right">Qatar</span><span class="vs">vs</span><span class="team">Zwitserland</span><span class="stad">–</span></div>
+        <div class="match" data-nl="false"><span class="match-datum"><strong>14 jun</strong>00:00</span><span class="team right">Brazilië</span><span class="vs">vs</span><span class="team">Marokko</span><span class="stad">–</span></div>
+        <div class="match" data-nl="false"><span class="match-datum"><strong>14 jun</strong>03:00</span><span class="team right">Haïti</span><span class="vs">vs</span><span class="team">Schotland</span><span class="stad">–</span></div>
+        <div class="match" data-nl="false"><span class="match-datum"><strong>14 jun</strong>06:00</span><span class="team right">Australië</span><span class="vs">vs</span><span class="team">Turkije</span><span class="stad">–</span></div>
+        <div class="match" data-nl="false"><span class="match-datum"><strong>14 jun</strong>19:00</span><span class="team right">Duitsland</span><span class="vs">vs</span><span class="team">Curaçao</span><span class="stad">–</span></div>
+        <div class="match nl" data-nl="true"><span class="match-datum"><strong>14 jun</strong>22:00</span><span class="team right nl-team">🇳🇱 Nederland</span><span class="vs">vs</span><span class="team">Japan</span><span class="stad">–</span></div>
+        <div class="match" data-nl="false"><span class="match-datum"><strong>15 jun</strong>01:00</span><span class="team right">Ivoorkust</span><span class="vs">vs</span><span class="team">Ecuador</span><span class="stad">–</span></div>
+        <div class="match" data-nl="false"><span class="match-datum"><strong>15 jun</strong>04:00</span><span class="team right">Zweden</span><span class="vs">vs</span><span class="team">Tunesië</span><span class="stad">–</span></div>
+        <div class="match" data-nl="false"><span class="match-datum"><strong>15 jun</strong>18:00</span><span class="team right">Spanje</span><span class="vs">vs</span><span class="team">Kaapverdië</span><span class="stad">–</span></div>
+        <div class="match" data-nl="false"><span class="match-datum"><strong>15 jun</strong>21:00</span><span class="team right">België</span><span class="vs">vs</span><span class="team">Egypte</span><span class="stad">–</span></div>
+        <div class="match" data-nl="false"><span class="match-datum"><strong>16 jun</strong>00:00</span><span class="team right">Saoedi-Arabië</span><span class="vs">vs</span><span class="team">Uruguay</span><span class="stad">–</span></div>
+        <div class="match" data-nl="false"><span class="match-datum"><strong>16 jun</strong>03:00</span><span class="team right">Iran</span><span class="vs">vs</span><span class="team">Nieuw-Zeeland</span><span class="stad">–</span></div>
+        <div class="match" data-nl="false"><span class="match-datum"><strong>16 jun</strong>21:00</span><span class="team right">Frankrijk</span><span class="vs">vs</span><span class="team">Senegal</span><span class="stad">–</span></div>
+        <div class="match" data-nl="false"><span class="match-datum"><strong>17 jun</strong>00:00</span><span class="team right">Irak</span><span class="vs">vs</span><span class="team">Noorwegen</span><span class="stad">–</span></div>
+        <div class="match" data-nl="false"><span class="match-datum"><strong>17 jun</strong>03:00</span><span class="team right">Argentinië</span><span class="vs">vs</span><span class="team">Algerije</span><span class="stad">–</span></div>
+        <div class="match" data-nl="false"><span class="match-datum"><strong>17 jun</strong>06:00</span><span class="team right">Oostenrijk</span><span class="vs">vs</span><span class="team">Jordanië</span><span class="stad">–</span></div>
+        <div class="match" data-nl="false"><span class="match-datum"><strong>17 jun</strong>19:00</span><span class="team right">Portugal</span><span class="vs">vs</span><span class="team">Congo-Kinshasa</span><span class="stad">–</span></div>
+        <div class="match" data-nl="false"><span class="match-datum"><strong>17 jun</strong>22:00</span><span class="team right">Engeland</span><span class="vs">vs</span><span class="team">Kroatië</span><span class="stad">–</span></div>
+        <div class="match" data-nl="false"><span class="match-datum"><strong>18 jun</strong>01:00</span><span class="team right">Ghana</span><span class="vs">vs</span><span class="team">Panama</span><span class="stad">–</span></div>
+        <div class="match" data-nl="false"><span class="match-datum"><strong>18 jun</strong>04:00</span><span class="team right">Oezbekistan</span><span class="vs">vs</span><span class="team">Colombia</span><span class="stad">–</span></div>
+
+        <div class="ronde-hdr">Speelronde 2</div>
+        <div class="match" data-nl="false"><span class="match-datum"><strong>18 jun</strong>18:00</span><span class="team right">Tsjechië</span><span class="vs">vs</span><span class="team">Zuid-Afrika</span><span class="stad">–</span></div>
+        <div class="match" data-nl="false"><span class="match-datum"><strong>18 jun</strong>21:00</span><span class="team right">Zwitserland</span><span class="vs">vs</span><span class="team">Bosnië Herzegovina</span><span class="stad">–</span></div>
+        <div class="match" data-nl="false"><span class="match-datum"><strong>19 jun</strong>00:00</span><span class="team right">Canada</span><span class="vs">vs</span><span class="team">Qatar</span><span class="stad">–</span></div>
+        <div class="match" data-nl="false"><span class="match-datum"><strong>19 jun</strong>03:00</span><span class="team right">Mexico</span><span class="vs">vs</span><span class="team">Zuid-Korea</span><span class="stad">–</span></div>
+        <div class="match" data-nl="false"><span class="match-datum"><strong>19 jun</strong>21:00</span><span class="team right">Verenigde Staten</span><span class="vs">vs</span><span class="team">Australië</span><span class="stad">–</span></div>
+        <div class="match" data-nl="false"><span class="match-datum"><strong>20 jun</strong>00:00</span><span class="team right">Schotland</span><span class="vs">vs</span><span class="team">Marokko</span><span class="stad">–</span></div>
+        <div class="match" data-nl="false"><span class="match-datum"><strong>20 jun</strong>02:30</span><span class="team right">Brazilië</span><span class="vs">vs</span><span class="team">Haïti</span><span class="stad">–</span></div>
+        <div class="match" data-nl="false"><span class="match-datum"><strong>20 jun</strong>05:00</span><span class="team right">Turkije</span><span class="vs">vs</span><span class="team">Paraguay</span><span class="stad">–</span></div>
+        <div class="match nl" data-nl="true"><span class="match-datum"><strong>20 jun</strong>19:00</span><span class="team right nl-team">🇳🇱 Nederland</span><span class="vs">vs</span><span class="team">Zweden</span><span class="stad">–</span></div>
+        <div class="match" data-nl="false"><span class="match-datum"><strong>20 jun</strong>22:00</span><span class="team right">Duitsland</span><span class="vs">vs</span><span class="team">Ivoorkust</span><span class="stad">–</span></div>
+        <div class="match" data-nl="false"><span class="match-datum"><strong>21 jun</strong>02:00</span><span class="team right">Ecuador</span><span class="vs">vs</span><span class="team">Curaçao</span><span class="stad">–</span></div>
+        <div class="match" data-nl="false"><span class="match-datum"><strong>21 jun</strong>06:00</span><span class="team right">Tunesië</span><span class="vs">vs</span><span class="team">Japan</span><span class="stad">–</span></div>
+        <div class="match" data-nl="false"><span class="match-datum"><strong>21 jun</strong>18:00</span><span class="team right">Spanje</span><span class="vs">vs</span><span class="team">Saoedi-Arabië</span><span class="stad">–</span></div>
+        <div class="match" data-nl="false"><span class="match-datum"><strong>21 jun</strong>21:00</span><span class="team right">België</span><span class="vs">vs</span><span class="team">Iran</span><span class="stad">–</span></div>
+        <div class="match" data-nl="false"><span class="match-datum"><strong>22 jun</strong>00:00</span><span class="team right">Uruguay</span><span class="vs">vs</span><span class="team">Kaapverdië</span><span class="stad">–</span></div>
+        <div class="match" data-nl="false"><span class="match-datum"><strong>22 jun</strong>03:00</span><span class="team right">Nieuw-Zeeland</span><span class="vs">vs</span><span class="team">Egypte</span><span class="stad">–</span></div>
+        <div class="match" data-nl="false"><span class="match-datum"><strong>22 jun</strong>19:00</span><span class="team right">Argentinië</span><span class="vs">vs</span><span class="team">Oostenrijk</span><span class="stad">–</span></div>
+        <div class="match" data-nl="false"><span class="match-datum"><strong>22 jun</strong>23:00</span><span class="team right">Frankrijk</span><span class="vs">vs</span><span class="team">Irak</span><span class="stad">–</span></div>
+        <div class="match" data-nl="false"><span class="match-datum"><strong>23 jun</strong>02:00</span><span class="team right">Noorwegen</span><span class="vs">vs</span><span class="team">Senegal</span><span class="stad">–</span></div>
+        <div class="match" data-nl="false"><span class="match-datum"><strong>23 jun</strong>05:00</span><span class="team right">Jordanië</span><span class="vs">vs</span><span class="team">Algerije</span><span class="stad">–</span></div>
+        <div class="match" data-nl="false"><span class="match-datum"><strong>23 jun</strong>19:00</span><span class="team right">Portugal</span><span class="vs">vs</span><span class="team">Oezbekistan</span><span class="stad">–</span></div>
+        <div class="match" data-nl="false"><span class="match-datum"><strong>23 jun</strong>22:00</span><span class="team right">Engeland</span><span class="vs">vs</span><span class="team">Ghana</span><span class="stad">–</span></div>
+        <div class="match" data-nl="false"><span class="match-datum"><strong>24 jun</strong>01:00</span><span class="team right">Panama</span><span class="vs">vs</span><span class="team">Kroatië</span><span class="stad">–</span></div>
+        <div class="match" data-nl="false"><span class="match-datum"><strong>24 jun</strong>04:00</span><span class="team right">Colombia</span><span class="vs">vs</span><span class="team">Congo-Kinshasa</span><span class="stad">–</span></div>
+
+        <div class="ronde-hdr">Speelronde 3</div>
+        <div class="match" data-nl="false"><span class="match-datum"><strong>24 jun</strong>21:00</span><span class="team right">Zwitserland</span><span class="vs">vs</span><span class="team">Canada</span><span class="stad">–</span></div>
+        <div class="match" data-nl="false"><span class="match-datum"><strong>24 jun</strong>21:00</span><span class="team right">Bosnië Herzegovina</span><span class="vs">vs</span><span class="team">Qatar</span><span class="stad">–</span></div>
+        <div class="match" data-nl="false"><span class="match-datum"><strong>25 jun</strong>00:00</span><span class="team right">Schotland</span><span class="vs">vs</span><span class="team">Brazilië</span><span class="stad">–</span></div>
+        <div class="match" data-nl="false"><span class="match-datum"><strong>25 jun</strong>00:00</span><span class="team right">Marokko</span><span class="vs">vs</span><span class="team">Haïti</span><span class="stad">–</span></div>
+        <div class="match" data-nl="false"><span class="match-datum"><strong>25 jun</strong>03:00</span><span class="team right">Zuid-Afrika</span><span class="vs">vs</span><span class="team">Zuid-Korea</span><span class="stad">–</span></div>
+        <div class="match" data-nl="false"><span class="match-datum"><strong>25 jun</strong>03:00</span><span class="team right">Tsjechië</span><span class="vs">vs</span><span class="team">Mexico</span><span class="stad">–</span></div>
+        <div class="match" data-nl="false"><span class="match-datum"><strong>25 jun</strong>22:00</span><span class="team right">Ecuador</span><span class="vs">vs</span><span class="team">Duitsland</span><span class="stad">–</span></div>
+        <div class="match" data-nl="false"><span class="match-datum"><strong>25 jun</strong>22:00</span><span class="team right">Curaçao</span><span class="vs">vs</span><span class="team">Ivoorkust</span><span class="stad">–</span></div>
+        <div class="match nl" data-nl="true"><span class="match-datum"><strong>26 jun</strong>01:00</span><span class="team right nl-team">Tunesië</span><span class="vs">vs</span><span class="team nl-team">🇳🇱 Nederland</span><span class="stad">–</span></div>
+        <div class="match" data-nl="false"><span class="match-datum"><strong>26 jun</strong>01:00</span><span class="team right">Japan</span><span class="vs">vs</span><span class="team">Zweden</span><span class="stad">–</span></div>
+        <div class="match" data-nl="false"><span class="match-datum"><strong>26 jun</strong>04:00</span><span class="team right">Paraguay</span><span class="vs">vs</span><span class="team">Australië</span><span class="stad">–</span></div>
+        <div class="match" data-nl="false"><span class="match-datum"><strong>26 jun</strong>04:00</span><span class="team right">Turkije</span><span class="vs">vs</span><span class="team">Verenigde Staten</span><span class="stad">–</span></div>
+        <div class="match" data-nl="false"><span class="match-datum"><strong>26 jun</strong>21:00</span><span class="team right">Noorwegen</span><span class="vs">vs</span><span class="team">Frankrijk</span><span class="stad">–</span></div>
+        <div class="match" data-nl="false"><span class="match-datum"><strong>26 jun</strong>21:00</span><span class="team right">Senegal</span><span class="vs">vs</span><span class="team">Irak</span><span class="stad">–</span></div>
+        <div class="match" data-nl="false"><span class="match-datum"><strong>27 jun</strong>02:00</span><span class="team right">Uruguay</span><span class="vs">vs</span><span class="team">Spanje</span><span class="stad">–</span></div>
+        <div class="match" data-nl="false"><span class="match-datum"><strong>27 jun</strong>02:00</span><span class="team right">Kaapverdië</span><span class="vs">vs</span><span class="team">Saoedi-Arabië</span><span class="stad">–</span></div>
+        <div class="match" data-nl="false"><span class="match-datum"><strong>27 jun</strong>05:00</span><span class="team right">Nieuw-Zeeland</span><span class="vs">vs</span><span class="team">België</span><span class="stad">–</span></div>
+        <div class="match" data-nl="false"><span class="match-datum"><strong>27 jun</strong>05:00</span><span class="team right">Egypte</span><span class="vs">vs</span><span class="team">Iran</span><span class="stad">–</span></div>
+        <div class="match" data-nl="false"><span class="match-datum"><strong>27 jun</strong>23:00</span><span class="team right">Panama</span><span class="vs">vs</span><span class="team">Engeland</span><span class="stad">–</span></div>
+        <div class="match" data-nl="false"><span class="match-datum"><strong>27 jun</strong>23:00</span><span class="team right">Kroatië</span><span class="vs">vs</span><span class="team">Ghana</span><span class="stad">–</span></div>
+        <div class="match" data-nl="false"><span class="match-datum"><strong>28 jun</strong>01:30</span><span class="team right">Colombia</span><span class="vs">vs</span><span class="team">Portugal</span><span class="stad">–</span></div>
+        <div class="match" data-nl="false"><span class="match-datum"><strong>28 jun</strong>01:30</span><span class="team right">Congo-Kinshasa</span><span class="vs">vs</span><span class="team">Oezbekistan</span><span class="stad">–</span></div>
+        <div class="match" data-nl="false"><span class="match-datum"><strong>28 jun</strong>04:00</span><span class="team right">Jordanië</span><span class="vs">vs</span><span class="team">Argentinië</span><span class="stad">–</span></div>
+        <div class="match" data-nl="false"><span class="match-datum"><strong>28 jun</strong>04:00</span><span class="team right">Algerije</span><span class="vs">vs</span><span class="team">Oostenrijk</span><span class="stad">–</span></div>
+
+      </div>
+    </div>
+
+    <!-- KNOCK-OUT -->
+    <div class="fase" data-fase="ko">
+      <div class="fase-hdr ko">
+        <h2>⚡ Knock-out fase</h2>
+        <span class="ronde-badge">32 wedstrijden · 28 jun – 19 jul 2026</span>
+      </div>
+      <div class="wedstrijden">
+
+        <div class="ronde-hdr">Zestiende finales (28 jun – 4 jul)</div>
+        <div class="match" data-nl="false"><span class="match-datum"><strong>28 jun</strong>21:00</span><span class="team right">#73 · 2A</span><span class="vs">vs</span><span class="team">2B</span><span class="stad">Los Angeles</span></div>
+        <div class="match" data-nl="false"><span class="match-datum"><strong>29 jun</strong>19:00</span><span class="team right">#76 · 1C</span><span class="vs">vs</span><span class="team">2F</span><span class="stad">Houston</span></div>
+        <div class="match" data-nl="false"><span class="match-datum"><strong>29 jun</strong>22:30</span><span class="team right">#74 · 1E</span><span class="vs">vs</span><span class="team">Beste nr.3</span><span class="stad">Boston</span></div>
+        <div class="match" data-nl="false"><span class="match-datum"><strong>30 jun</strong>03:00</span><span class="team right">#75 · 1F</span><span class="vs">vs</span><span class="team">2C</span><span class="stad">Monterrey</span></div>
+        <div class="match" data-nl="false"><span class="match-datum"><strong>30 jun</strong>19:00</span><span class="team right">#78 · 2E</span><span class="vs">vs</span><span class="team">2I</span><span class="stad">Dallas</span></div>
+        <div class="match" data-nl="false"><span class="match-datum"><strong>30 jun</strong>23:00</span><span class="team right">#77 · 1I</span><span class="vs">vs</span><span class="team">Beste nr.3</span><span class="stad">New York</span></div>
+        <div class="match" data-nl="false"><span class="match-datum"><strong>1 jul</strong>03:00</span><span class="team right">#79 · 1A</span><span class="vs">vs</span><span class="team">Beste nr.3</span><span class="stad">Mexico-Stad</span></div>
+        <div class="match" data-nl="false"><span class="match-datum"><strong>1 jul</strong>18:00</span><span class="team right">#80 · 1L</span><span class="vs">vs</span><span class="team">Beste nr.3</span><span class="stad">Atlanta</span></div>
+        <div class="match" data-nl="false"><span class="match-datum"><strong>1 jul</strong>22:00</span><span class="team right">#82 · 1G</span><span class="vs">vs</span><span class="team">Beste nr.3</span><span class="stad">Seattle</span></div>
+        <div class="match" data-nl="false"><span class="match-datum"><strong>2 jul</strong>02:00</span><span class="team right">#81 · 1D</span><span class="vs">vs</span><span class="team">Beste nr.3</span><span class="stad">San Francisco</span></div>
+        <div class="match" data-nl="false"><span class="match-datum"><strong>2 jul</strong>21:00</span><span class="team right">#84 · 1H</span><span class="vs">vs</span><span class="team">2J</span><span class="stad">Los Angeles</span></div>
+        <div class="match" data-nl="false"><span class="match-datum"><strong>3 jul</strong>01:00</span><span class="team right">#83 · 2K</span><span class="vs">vs</span><span class="team">2L</span><span class="stad">Toronto</span></div>
+        <div class="match" data-nl="false"><span class="match-datum"><strong>3 jul</strong>05:00</span><span class="team right">#85 · 1B</span><span class="vs">vs</span><span class="team">Beste nr.3</span><span class="stad">Vancouver</span></div>
+        <div class="match" data-nl="false"><span class="match-datum"><strong>3 jul</strong>20:00</span><span class="team right">#88 · 2D</span><span class="vs">vs</span><span class="team">2G</span><span class="stad">Dallas</span></div>
+        <div class="match" data-nl="false"><span class="match-datum"><strong>4 jul</strong>00:00</span><span class="team right">#86 · 1J</span><span class="vs">vs</span><span class="team">2H</span><span class="stad">Miami</span></div>
+        <div class="match" data-nl="false"><span class="match-datum"><strong>4 jul</strong>03:30</span><span class="team right">#87 · 1K</span><span class="vs">vs</span><span class="team">Beste nr.3</span><span class="stad">Kansas City</span></div>
+
+        <div class="ronde-hdr">Achtste finales (4–7 jul)</div>
+        <div class="match" data-nl="false"><span class="match-datum"><strong>4 jul</strong>19:00</span><span class="team right">#89 · W73</span><span class="vs">vs</span><span class="team">W75</span><span class="stad">Houston</span></div>
+        <div class="match" data-nl="false"><span class="match-datum"><strong>4 jul</strong>23:00</span><span class="team right">#90 · W74</span><span class="vs">vs</span><span class="team">W77</span><span class="stad">Philadelphia</span></div>
+        <div class="match" data-nl="false"><span class="match-datum"><strong>5 jul</strong>22:00</span><span class="team right">#91 · W76</span><span class="vs">vs</span><span class="team">W78</span><span class="stad">New York</span></div>
+        <div class="match" data-nl="false"><span class="match-datum"><strong>6 jul</strong>02:00</span><span class="team right">#92 · W79</span><span class="vs">vs</span><span class="team">W80</span><span class="stad">Mexico-Stad</span></div>
+        <div class="match" data-nl="false"><span class="match-datum"><strong>6 jul</strong>21:00</span><span class="team right">#93 · W83</span><span class="vs">vs</span><span class="team">W84</span><span class="stad">Dallas</span></div>
+        <div class="match" data-nl="false"><span class="match-datum"><strong>7 jul</strong>02:00</span><span class="team right">#94 · W81</span><span class="vs">vs</span><span class="team">W82</span><span class="stad">Seattle</span></div>
+        <div class="match" data-nl="false"><span class="match-datum"><strong>7 jul</strong>18:00</span><span class="team right">#95 · W86</span><span class="vs">vs</span><span class="team">W88</span><span class="stad">Atlanta</span></div>
+        <div class="match" data-nl="false"><span class="match-datum"><strong>7 jul</strong>22:00</span><span class="team right">#96 · W85</span><span class="vs">vs</span><span class="team">W87</span><span class="stad">Vancouver</span></div>
+
+        <div class="ronde-hdr">Kwartfinales (9–12 jul)</div>
+        <div class="match" data-nl="false"><span class="match-datum"><strong>9 jul</strong>22:00</span><span class="team right">#97 · W89</span><span class="vs">vs</span><span class="team">W90</span><span class="stad">Boston</span></div>
+        <div class="match" data-nl="false"><span class="match-datum"><strong>10 jul</strong>21:00</span><span class="team right">#98 · W93</span><span class="vs">vs</span><span class="team">W94</span><span class="stad">Los Angeles</span></div>
+        <div class="match" data-nl="false"><span class="match-datum"><strong>11 jul</strong>23:00</span><span class="team right">#99 · W91</span><span class="vs">vs</span><span class="team">W92</span><span class="stad">Miami</span></div>
+        <div class="match" data-nl="false"><span class="match-datum"><strong>12 jul</strong>03:00</span><span class="team right">#100 · W95</span><span class="vs">vs</span><span class="team">W96</span><span class="stad">Kansas City</span></div>
+
+        <div class="ronde-hdr">Halve finales (14–15 jul)</div>
+        <div class="match" data-nl="false"><span class="match-datum"><strong>14 jul</strong>21:00</span><span class="team right">#101 · W97</span><span class="vs">vs</span><span class="team">W98</span><span class="stad">Dallas</span></div>
+        <div class="match" data-nl="false"><span class="match-datum"><strong>15 jul</strong>21:00</span><span class="team right">#102 · W99</span><span class="vs">vs</span><span class="team">W100</span><span class="stad">Atlanta</span></div>
+
+        <div class="ronde-hdr">Troostfinale – 3e plaats (18 jul)</div>
+        <div class="match" data-nl="false"><span class="match-datum"><strong>18 jul</strong>23:00</span><span class="team right">#103 · V101</span><span class="vs">vs</span><span class="team">V102</span><span class="stad">Miami</span></div>
+
+        <div class="ronde-hdr">🏆 Finale (19 jul)</div>
+        <div class="match" data-nl="false"><span class="match-datum"><strong>19 jul</strong>21:00</span><span class="team right">#104 · W101</span><span class="vs">vs</span><span class="team">W102</span><span class="stad">New York/NJ</span></div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <a href="#top" class="back-to-top">↑ Terug naar boven</a>
+
+</div>
+
+<footer>
+  <strong>WK Poule 2026 – Hotrodradio</strong><br>
+  Alle tijden zijn Nederlandse tijd
+</footer>
+
+<div style="position:fixed;bottom:8px;right:12px;font-size:.7rem;
+  color:rgba(255,255,255,.4);background:rgba(0,0,0,.3);
+  padding:2px 8px;border-radius:10px;pointer-events:none;">
+  v1.1 – mei 2026
+</div>
+
+<script>
+function setFilter(type, btn) {
+  document.querySelectorAll('.ftab').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.match').forEach(m => {
+    const isNL = m.dataset.nl === 'true';
+    const fase = m.closest('.fase')?.dataset.fase;
+    if (type === 'all') m.classList.remove('hidden');
+    else if (type === 'nl') m.classList.toggle('hidden', !isNL);
+    else if (type === 'groep') m.classList.toggle('hidden', fase !== 'groep');
+    else if (type === 'ko') m.classList.toggle('hidden', fase !== 'ko');
+  });
+}
+</script>
+</body>
+</html>
